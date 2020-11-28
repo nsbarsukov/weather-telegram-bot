@@ -13,8 +13,8 @@ class Bot:
     def add_command(self, command_name: str, callback: Callable[[Update, CallbackContext], None]):
         self.dispatcher.add_handler(CommandHandler(command_name, callback))
 
-    def add_msg_handler(self, callback: Callable[[Update, CallbackContext], None]):
-        self.dispatcher.add_handler(MessageHandler(Filters.text & (~Filters.command), callback))
+    def add_msg_handler(self, callback: Callable[[Update, CallbackContext], None], regexp_str=r'*'):
+        self.dispatcher.add_handler(MessageHandler(Filters.text & (~Filters.command) & Filters.regex(regexp_str), callback))
 
     def start_polling(self):
         self.updater.start_polling()

@@ -4,7 +4,11 @@ from bot import Bot
 
 
 def start_command(update: Update, context: CallbackContext):
-    context.bot.send_message(chat_id=update.effective_chat.id, text="I'm a bot, please talk to me!")
+    context.bot.send_message(chat_id=update.effective_chat.id, text="Привет! Я чат-бот погоды")
+
+
+def say_bye(update: Update, context: CallbackContext):
+    context.bot.send_sticker(chat_id=update.effective_chat.id, sticker='https://www.gstatic.com/webp/gallery/1.webp')
 
 
 def msg_with_keyboard(update: Update, context: CallbackContext):
@@ -17,5 +21,6 @@ def msg_with_keyboard(update: Update, context: CallbackContext):
 BOT_TOKEN = '1412832721:AAFsug46EX33UFUFh0Zfky8l0kp6Q5WfiVs'
 bot = Bot(BOT_TOKEN)
 bot.add_command('start', start_command)
-bot.add_msg_handler(msg_with_keyboard)
+bot.add_msg_handler(msg_with_keyboard, regexp_str=r'кнопки')
+bot.add_msg_handler(say_bye, regexp_str=r'пока')
 bot.start_polling()
