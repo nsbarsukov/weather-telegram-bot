@@ -1,5 +1,5 @@
 # weather-telegram-bot
-Телеграмм-бот, рассказывающий о погоде
+Телеграмм-бот, рассказывающий о погоде. Написана на python с использованием библиотеки python-telegram-bot.
 
 ## Цель:
 - написать чат бота, который будет говорить погоду в двух городах - Москва и СПб
@@ -19,3 +19,15 @@
 - [Статья в журнале "Код" по созданию телеграмм чат бота](https://thecode.media/python-bot/)
 - [Статья на TProger по созданию телеграмм чат бота и его deploy на Heroku](https://tproger.ru/translations/telegram-bot-create-and-deploy/)
 - [Пакет natasha для nlp на русском языке](https://habr.com/ru/post/516098/)
+
+
+## Почему выбрана python-telegram-bot библиотека
+На момент создания бота для Python имелось 2 крупных библиотеки согласно странице на официальном сайте телеграмма
+в разделе ["Bot Code Examples"](https://core.telegram.org/bots/samples):
+- [python-telegram-bot](https://github.com/python-telegram-bot/python-telegram-bot)
+- [pyTelegramBotAPI](https://github.com/eternnoir/pyTelegramBotAPI)
+
+Обе либы разрабатывали с 2015 (согласно статистике релизов) и активно разрабатываются до сих пор.
+Выбор в пользу python-telegram-bot был сделан крайне примитивно:
+с 2015 года по 2020 он собрал в 3 раза больше звезд и форков, чем его конкурент
+(была цель научиться пользоваться инструментом, которое широко одобрило сообщество).
