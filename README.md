@@ -16,7 +16,9 @@
     5. Цикл while пока с агентом не попрощаются
     
 ## Полезные ссылочки с tutorial по написанию бота
-- [Статья в журнале "Код" по созданию телеграмм чат бота](https://thecode.media/python-bot/)
+- [Полное руководство Python по созданию Telegram Bot с использованием python-telegram-bot (статья от 7 мая 2020)](https://dev-gang.ru/article/ja-postroil-telegrafnyi-bot-dlja-borby-s-pisczevymi-othodami-vot-kak-eto-delaetsja-inaqfmq470/)
+- [Telegram-бот для получения адреса по локации или координатам с использованием python-telegram-bot (статья от 9 сентября 2020)](https://vc.ru/dev/156853-telegram-bot-dlya-polucheniya-adresa-po-lokacii-ili-koordinatam-python)
+- [Telegram-бот на python-telegram-bot + flask + heroku deploy](https://www.toptal.com/python/telegram-bot-tutorial-python)
 - [Статья на TProger по созданию телеграмм чат бота и его deploy на Heroku](https://tproger.ru/translations/telegram-bot-create-and-deploy/)
 - [Пакет natasha для nlp на русском языке](https://habr.com/ru/post/516098/)
 
