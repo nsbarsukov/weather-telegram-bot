@@ -21,6 +21,8 @@
 - [Telegram-бот на python-telegram-bot + flask + heroku deploy](https://www.toptal.com/python/telegram-bot-tutorial-python)
 - [Статья на TProger по созданию телеграмм чат бота и его deploy на Heroku](https://tproger.ru/translations/telegram-bot-create-and-deploy/)
 - [Пакет natasha для nlp на русском языке](https://habr.com/ru/post/516098/)
+- [Как отправлять смайлики через telegram bot](https://github.com/python-telegram-bot/python-telegram-bot/wiki/Emoji)
+и [emoji cheat sheet](https://www.webfx.com/tools/emoji-cheat-sheet/)
 
 
 ## Почему выбрана python-telegram-bot библиотека

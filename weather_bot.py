@@ -1,6 +1,11 @@
 import re
+
+# telegram bot packages
 from telegram import Update, ReplyKeyboardMarkup
 from telegram.ext import CallbackContext
+from emoji import emojize
+
+# local packages
 from bot import Bot
 
 
@@ -9,7 +14,10 @@ def start_command(update: Update, context: CallbackContext):
 
 
 def say_bye(update: Update, context: CallbackContext):
-    context.bot.send_message(chat_id=update.effective_chat.id, text='До скорых встреч \xF0\x9F\x98\x89')
+    context.bot.send_message(
+        chat_id=update.effective_chat.id,
+        text=emojize("До скорых встреч :wave:", use_aliases=True)
+    )
 
 
 def msg_with_keyboard(update: Update, context: CallbackContext):
