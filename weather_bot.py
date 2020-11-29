@@ -1,3 +1,4 @@
+import re
 from telegram import Update, ReplyKeyboardMarkup
 from telegram.ext import CallbackContext
 from bot import Bot
@@ -8,7 +9,7 @@ def start_command(update: Update, context: CallbackContext):
 
 
 def say_bye(update: Update, context: CallbackContext):
-    context.bot.send_sticker(chat_id=update.effective_chat.id, sticker='https://www.gstatic.com/webp/gallery/1.webp')
+    context.bot.send_message(chat_id=update.effective_chat.id, text='До скорых встреч \xF0\x9F\x98\x89')
 
 
 def msg_with_keyboard(update: Update, context: CallbackContext):
@@ -21,6 +22,6 @@ def msg_with_keyboard(update: Update, context: CallbackContext):
 BOT_TOKEN = '1412832721:AAFsug46EX33UFUFh0Zfky8l0kp6Q5WfiVs'
 bot = Bot(BOT_TOKEN)
 bot.add_command('start', start_command)
-bot.add_msg_handler(msg_with_keyboard, regexp_str=r'кнопки')
-bot.add_msg_handler(say_bye, regexp_str=r'пока')
+bot.add_msg_handler(msg_with_keyboard, regexp=re.compile(r'кнопки', re.IGNORECASE | re.DOTALL))
+bot.add_msg_handler(say_bye, regexp=re.compile(r'пока', re.IGNORECASE))
 bot.start_polling()
