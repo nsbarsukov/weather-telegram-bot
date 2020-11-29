@@ -58,7 +58,7 @@ def specify_date(update: Update, context: CallbackContext, locations: List[str])
 
 def show_weather_forecast(update: Update, context: CallbackContext, locations: List[str], dates: List[Date]):
     day = dates[0]
-    parsed_date = datetime(day.year, day.month, day.day)
+    parsed_date = datetime(day.year or date.today().year, day.month, day.day)
 
     # TODO Подтянуть api какого-нибудь сервиса с прознозом погоды
     context.bot.send_message(
