@@ -62,7 +62,7 @@ def show_weather_forecast(update: Update, context: CallbackContext, location: st
     )
 
 
-def message_commander(update: Update, context: CallbackContext):
+def message_commander(update: Update, context: CallbackContext, bot_ref: Bot):
     """
     Точка входа для любых сообщений, не связанных с командами.
     Определяет, какую функцию бота запустить дальше (какой дать отклик)
@@ -75,6 +75,7 @@ def message_commander(update: Update, context: CallbackContext):
     if len(locations) > 0 and len(dates) > 0:
         show_weather_forecast(update, context, locations[0], dates[0])
     elif len(locations) > 0 and len(dates) == 0:
+        bot_ref.save_to_storage('city', locations[0])
         specify_date(update, context, locations[0])
     elif find_bye_messages_regexp.search(user_text):
         say_bye(update, context)
@@ -85,5 +86,5 @@ def message_commander(update: Update, context: CallbackContext):
 BOT_TOKEN = '1412832721:AAFsug46EX33UFUFh0Zfky8l0kp6Q5WfiVs'
 bot = Bot(BOT_TOKEN)
 bot.add_command('start', start_command)
-bot.add_msg_handler(message_commander)
+bot.add_msg_handler(lambda update, context: message_commander(update, context, bot))
 bot.start_polling()
