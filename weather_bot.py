@@ -1,3 +1,5 @@
+from datetime import date, timedelta
+
 # telegram bot packages
 from telegram import Update, ReplyKeyboardMarkup
 from telegram.ext import CallbackContext
@@ -6,6 +8,12 @@ from telegram.ext import CallbackContext
 from bot import Bot
 from natasha_utils import NatashaExtractor
 from constants import BOT_MESSAGES, find_bye_messages_regexp
+
+
+def date_after_today(n, data_format='%d.%m.%Y'):
+    today = date.today()
+
+    return (today + timedelta(days=n)).strftime(data_format)
 
 
 def start_command(update: Update, context: CallbackContext):
@@ -22,31 +30,35 @@ def say_bye(update: Update, context: CallbackContext):
     )
 
 
-def specify_date(update: Update, context: CallbackContext, city: str):
-    reply_keyboard = [
-        ['Сегодня', 'Завтра', 'Послезавтра'],
-        ['11.12', '12.12', '13.12']
-    ]
-    markup = ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True)
-
-    context.bot.send_message(
-        chat_id=update.effective_chat.id,
-        text='На какой день Вам интересен прогноз в городе "{}"?'.format(city),
-        reply_markup=markup
-    )
-
-
-def show_weather_forecast(update: Update, context: CallbackContext, location: str, date):
-    context.bot.send_message(
-        chat_id=update.effective_chat.id,
-        text='Показываю прогноз погоды для города "{} на {}"?'.format(location, date)
-    )
-
-
 def say_understand_nothing(update: Update, context: CallbackContext):
     context.bot.send_message(
         chat_id=update.effective_chat.id,
         text=BOT_MESSAGES['say_understand_nothing']
+    )
+
+
+def specify_date(update: Update, context: CallbackContext, city: str):
+    reply_keyboard = [
+        [
+            'Сегодня\n({})'.format(date_after_today(0)),
+            'Завтра\n({})'.format(date_after_today(1)),
+            'Послезавтра\n({})'.format(date_after_today(2))
+         ],
+        [date_after_today(3), date_after_today(4), date_after_today(5)]
+    ]
+
+    context.bot.send_message(
+        chat_id=update.effective_chat.id,
+        text='На какой день Вам интересен прогноз в городе "{}"?'.format(city),
+        reply_markup=ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True)
+    )
+
+
+def show_weather_forecast(update: Update, context: CallbackContext, location: str, date):
+    # TODO Подтянуть api какого-нибудь сервиса с прознозом погоды
+    context.bot.send_message(
+        chat_id=update.effective_chat.id,
+        text='Показываю прогноз погоды для города "{} на {}"?'.format(location, date)
     )
 
 
