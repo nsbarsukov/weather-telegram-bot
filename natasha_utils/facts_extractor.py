@@ -8,6 +8,7 @@ from natasha import (
     NewsMorphTagger,
     NewsSyntaxParser,
     NewsNERTagger,
+    DatesExtractor,
 )
 
 segmenter = Segmenter()
@@ -17,6 +18,8 @@ emb = NewsEmbedding()
 morph_tagger = NewsMorphTagger(emb)
 syntax_parser = NewsSyntaxParser(emb)
 ner_tagger = NewsNERTagger(emb)
+
+dates_extractor = DatesExtractor(morph_vocab)
 
 
 class NatashaExtractor:
@@ -33,3 +36,6 @@ class NatashaExtractor:
         locations = list(filter(lambda span: span.type == 'LOC', self.doc.spans))
 
         return list(map(lambda span: span.normal, locations))
+
+    def find_date(self):
+        return list(dates_extractor(self.doc.text))

@@ -8,5 +8,9 @@ BOT_MESSAGES = {
     'say_bye': emojize(
         'До скорых встреч :wave:',
         use_aliases=True
+    ),
+    'say_understand_nothing': emojize(
+        'К сожалению, я не понял, чего вы хотите :cry:.\nДавайте попробуем всё заново?\nПросто напиши мне, в каком городе тебя интересует погода и на какой день.',
+        use_aliases=True
     )
 }
