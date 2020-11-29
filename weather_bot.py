@@ -9,10 +9,10 @@ from telegram.ext import CallbackContext
 # local packages
 from bot import Bot
 from natasha_utils import NatashaExtractor
-from constants import BOT_MESSAGES, find_bye_messages_regexp
+from constants import BOT_TOKEN, BOT_MESSAGES, DATE_FORMAT, find_bye_messages_regexp
 
 
-def date_after_today(n, data_format='%d.%m.%Y'):
+def date_after_today(n, data_format=DATE_FORMAT):
     today = date.today()
 
     return (today + timedelta(days=n)).strftime(data_format)
@@ -63,7 +63,7 @@ def show_weather_forecast(update: Update, context: CallbackContext, locations: L
     # TODO Подтянуть api какого-нибудь сервиса с прознозом погоды
     context.bot.send_message(
         chat_id=update.effective_chat.id,
-        text='Показываю прогноз погоды для города "{}" на {}?'.format(locations[0], parsed_date.strftime('%d.%m.%Y'))
+        text='Показываю прогноз погоды для города "{}" на {}?'.format(locations[0], parsed_date.strftime(DATE_FORMAT))
     )
 
 
@@ -94,7 +94,6 @@ def message_commander(update: Update, context: CallbackContext, bot_ref: Bot):
         bot_ref.reset_storage()
 
 
-BOT_TOKEN = '1412832721:AAFsug46EX33UFUFh0Zfky8l0kp6Q5WfiVs'
 bot = Bot(BOT_TOKEN)
 bot.add_command('start', start_command)
 bot.add_msg_handler(lambda update, context: message_commander(update, context, bot))
