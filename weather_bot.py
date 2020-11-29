@@ -1,4 +1,5 @@
 from datetime import date, timedelta
+from typing import List
 
 # telegram bot packages
 from telegram import Update, ReplyKeyboardMarkup
@@ -37,7 +38,7 @@ def say_understand_nothing(update: Update, context: CallbackContext):
     )
 
 
-def specify_date(update: Update, context: CallbackContext, city: str):
+def specify_date(update: Update, context: CallbackContext, locations: List[str]):
     reply_keyboard = [
         [
             'Сегодня\n({})'.format(date_after_today(0)),
@@ -49,16 +50,16 @@ def specify_date(update: Update, context: CallbackContext, city: str):
 
     context.bot.send_message(
         chat_id=update.effective_chat.id,
-        text='На какой день Вам интересен прогноз в городе "{}"?'.format(city),
+        text='На какой день Вам интересен прогноз в городе "{}"?'.format(locations[0]),
         reply_markup=ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True)
     )
 
 
-def show_weather_forecast(update: Update, context: CallbackContext, location: str, date):
+def show_weather_forecast(update: Update, context: CallbackContext, locations: List[str], date):
     # TODO Подтянуть api какого-нибудь сервиса с прознозом погоды
     context.bot.send_message(
         chat_id=update.effective_chat.id,
-        text='Показываю прогноз погоды для города "{} на {}"?'.format(location, date)
+        text='Показываю прогноз погоды для города "{}" на {}?'.format(locations[0], date)
     )
 
 
@@ -67,20 +68,26 @@ def message_commander(update: Update, context: CallbackContext, bot_ref: Bot):
     Точка входа для любых сообщений, не связанных с командами.
     Определяет, какую функцию бота запустить дальше (какой дать отклик)
     """
+    bot_storage_state = bot_ref.get_storage_state()
+    remembered_locations = bot_storage_state['locations'] if 'locations' in bot_storage_state else None
+
     user_text = update.message.text
     user_text_info = NatashaExtractor(update.message.text)
-    locations = user_text_info.find_locations()
+    locations = user_text_info.find_locations() or remembered_locations or []
     dates = user_text_info.find_date()
 
     if len(locations) > 0 and len(dates) > 0:
-        show_weather_forecast(update, context, locations[0], dates[0])
+        show_weather_forecast(update, context, locations, dates[0])
+        bot_ref.reset_storage()
     elif len(locations) > 0 and len(dates) == 0:
-        bot_ref.save_to_storage('city', locations[0])
-        specify_date(update, context, locations[0])
+        bot_ref.save_to_storage('locations', locations)
+        specify_date(update, context, locations)
     elif find_bye_messages_regexp.search(user_text):
         say_bye(update, context)
+        bot_ref.reset_storage()
     else:
         say_understand_nothing(update, context)
+        bot_ref.reset_storage()
 
 
 BOT_TOKEN = '1412832721:AAFsug46EX33UFUFh0Zfky8l0kp6Q5WfiVs'

@@ -30,3 +30,6 @@ class Bot:
 
     def save_to_storage(self, key, value):
         self.__bot_storage[key] = value
+
+    def reset_storage(self):
+        self.__bot_storage = {}
