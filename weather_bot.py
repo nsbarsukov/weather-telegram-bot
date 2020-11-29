@@ -1,7 +1,8 @@
-from datetime import date, timedelta
+from datetime import date, timedelta, datetime
 from typing import List
 
 # telegram bot packages
+from natasha.obj import Date
 from telegram import Update, ReplyKeyboardMarkup
 from telegram.ext import CallbackContext
 
@@ -55,11 +56,14 @@ def specify_date(update: Update, context: CallbackContext, locations: List[str])
     )
 
 
-def show_weather_forecast(update: Update, context: CallbackContext, locations: List[str], date):
+def show_weather_forecast(update: Update, context: CallbackContext, locations: List[str], dates: List[Date]):
+    day = dates[0]
+    parsed_date = datetime(day.year, day.month, day.day)
+
     # TODO Подтянуть api какого-нибудь сервиса с прознозом погоды
     context.bot.send_message(
         chat_id=update.effective_chat.id,
-        text='Показываю прогноз погоды для города "{}" на {}?'.format(locations[0], date)
+        text='Показываю прогноз погоды для города "{}" на {}?'.format(locations[0], parsed_date.strftime('%d.%m.%Y'))
     )
 
 
@@ -77,7 +81,7 @@ def message_commander(update: Update, context: CallbackContext, bot_ref: Bot):
     dates = user_text_info.find_date()
 
     if len(locations) > 0 and len(dates) > 0:
-        show_weather_forecast(update, context, locations, dates[0])
+        show_weather_forecast(update, context, locations, dates)
         bot_ref.reset_storage()
     elif len(locations) > 0 and len(dates) == 0:
         bot_ref.save_to_storage('locations', locations)

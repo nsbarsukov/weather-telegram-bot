@@ -10,6 +10,8 @@ from natasha import (
     NewsNERTagger,
     DatesExtractor,
 )
+from natasha.extractors import Match
+from natasha.obj import Date
 
 segmenter = Segmenter()
 morph_vocab = MorphVocab()
@@ -37,5 +39,7 @@ class NatashaExtractor:
 
         return list(map(lambda span: span.normal, locations))
 
-    def find_date(self):
-        return list(dates_extractor(self.doc.text))
+    def find_date(self) -> List[Date]:
+        matched_obj: List[Match] = list(dates_extractor(self.doc.text))
+
+        return list(map(lambda x: x.fact, matched_obj))
