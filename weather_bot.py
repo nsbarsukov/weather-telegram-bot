@@ -3,20 +3,23 @@ import re
 # telegram bot packages
 from telegram import Update, ReplyKeyboardMarkup
 from telegram.ext import CallbackContext
-from emoji import emojize
 
 # local packages
 from bot import Bot
+from constants import BOT_MESSAGES
 
 
 def start_command(update: Update, context: CallbackContext):
-    context.bot.send_message(chat_id=update.effective_chat.id, text="Привет! Я чат-бот погоды")
+    context.bot.send_message(
+        chat_id=update.effective_chat.id,
+        text=BOT_MESSAGES['start_command']
+    )
 
 
 def say_bye(update: Update, context: CallbackContext):
     context.bot.send_message(
         chat_id=update.effective_chat.id,
-        text=emojize("До скорых встреч :wave:", use_aliases=True)
+        text=BOT_MESSAGES['say_bye']
     )
 
 
