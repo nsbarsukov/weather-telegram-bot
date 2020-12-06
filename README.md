@@ -17,6 +17,7 @@
 - **python-telegram-bot** - библиотека-обертка для работы с api телеграмма ([подробнее здесь](#почему-выбрана-python-telegram-bot-библиотека))
 - **natasha** - библиотека для nlp при работе с русским текстом ([подробнее здесь](https://habr.com/ru/post/516098/))
 - **emoji** - пригодится для работы со смайликами
+- **requests** - для работы с api yandex
 
 Используй команду `pip3 install python-telegram-bot natasha emoji`
 
@@ -24,8 +25,10 @@
 - В файле constants/global_env_variables.py в константе BOT_TOKEN подставь токен своего бота.<br>
 Ты можешь просто заменить `BOT_TOKEN = os.environ.get('BOT_TOKEN')` на `BOT_TOKEN="your token"`.
 Или ничего не менять в коде, а задать переменную в глобальном окружении своего компьютера.
-  + как создать бота и получить токен [можно почитать здесь](https://vc.ru/dev/156853-telegram-bot-dlya-polucheniya-adresa-po-lokacii-ili-koordinatam-python))
+  + как создать бота и получить токен [можно почитать здесь](https://vc.ru/dev/156853-telegram-bot-dlya-polucheniya-adresa-po-lokacii-ili-koordinatam-python)
   + как создавать глобальные переменные окружения для bash/zsh [здесь](https://apple.stackexchange.com/a/356455)
+- В файле constants/global_env_variables.py в константе
+  YANDEX_GEOCODER_API_TOKEN подставь токен для [API для перевода географических координат в адрес и наоборот](https://yandex.ru/dev/maps/geocoder/)
 - Запусти скрипт в корне репозитория `weather_bot.py`
 
 ## Цель:

@@ -1,3 +1,4 @@
 import os
 
 BOT_TOKEN = os.environ.get('WEATHER_BOT_TOKEN')
+YANDEX_GEOCODER_API_TOKEN = os.environ.get('YANDEX_GEOCODER_API_TOKEN')
