@@ -34,8 +34,8 @@
 **Рекомендуемый вариант**: ничего не менять в коде, а задать каждую переменную в глобальном окружении своего компьютера (как создавать глобальные переменные окружения для bash/zsh [здесь](https://apple.stackexchange.com/a/356455)). <br>
 **Легкий и быстрый вариант** (только для локального запуска!): Ты можешь просто заменить каждую переменную в духе `BOT_TOKEN = os.environ.get('BOT_TOKEN')` на `BOT_TOKEN="your token"`. <br> <br>
 **Список всех констант-токенов, которые нужно задать:**
-  + в константе `BOT_TOKEN` подставь токен своего бота (как создать бота и получить токен [можно почитать здесь](https://vc.ru/dev/156853-telegram-bot-dlya-polucheniya-adresa-po-lokacii-ili-koordinatam-python))
-  + в константе `YANDEX_GEOCODER_API_TOKEN` подставь токен для [API для перевода географических координат в адрес и наоборот](https://yandex.ru/dev/maps/geocoder/). <br>
+    + в константе `BOT_TOKEN` подставь токен своего бота (как создать бота и получить токен [можно почитать здесь](https://vc.ru/dev/156853-telegram-bot-dlya-polucheniya-adresa-po-lokacii-ili-koordinatam-python))
+    + в константе `YANDEX_GEOCODER_API_TOKEN` подставь токен для [API для перевода географических координат в адрес и наоборот](https://yandex.ru/dev/maps/geocoder/). <br>
 
 3. Запусти скрипт в корне репозитория `weather_bot.py`
 
