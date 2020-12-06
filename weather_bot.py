@@ -1,5 +1,6 @@
 from datetime import date, timedelta, datetime
 from typing import List
+from emoji import emojize
 
 # telegram bot packages
 from natasha.obj import Date
@@ -98,3 +99,4 @@ bot = Bot(BOT_TOKEN)
 bot.add_command('start', start_command)
 bot.add_msg_handler(lambda update, context: message_commander(update, context, bot))
 bot.start_polling()
+print(emojize("==============> Бот запущен :rocket: <==============", use_aliases=True))
