@@ -9,7 +9,7 @@
 (создать папку weather-api-parser с утилитой `getWeatherForecast(city, date)`) 
 - [ ] Заиспользовать утилиту `getWeatherForecast(city, date)` внутри `show_weather_forecast`
 и сделать красивый вывод информации для пользователя
-- [] Сохранить токен бота как глобальную переменную окружения и выпилить его с гита
+- [x] Сохранить токен бота как глобальную переменную окружения и выпилить его с гита
  
 
 ## Используемые библиотеки
@@ -21,8 +21,11 @@
 Используй команду `pip3 install python-telegram-bot natasha emoji`
 
 ## Запуск бота
-- В файле constants/global_env_variables.py в константе BOT_TOKEN подставь токен своего бота
-(как создать бота и получить токен [можно почитать здесь](https://vc.ru/dev/156853-telegram-bot-dlya-polucheniya-adresa-po-lokacii-ili-koordinatam-python))
+- В файле constants/global_env_variables.py в константе BOT_TOKEN подставь токен своего бота.<br>
+Ты можешь просто заменить `BOT_TOKEN = os.environ.get('BOT_TOKEN')` на `BOT_TOKEN="your token"`.
+Или ничего не менять в коде, а задать переменную в глобальном окружении своего компьютера.
+  + как создать бота и получить токен [можно почитать здесь](https://vc.ru/dev/156853-telegram-bot-dlya-polucheniya-adresa-po-lokacii-ili-koordinatam-python))
+  + как создавать глобальные переменные окружения для bash/zsh [здесь](https://apple.stackexchange.com/a/356455)
 - Запусти скрипт в корне репозитория `weather_bot.py`
 
 ## Цель:
