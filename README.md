@@ -36,6 +36,7 @@
 **Список всех констант-токенов, которые нужно задать:**
     + в константе `BOT_TOKEN` подставь токен своего бота (как создать бота и получить токен [можно почитать здесь](https://vc.ru/dev/156853-telegram-bot-dlya-polucheniya-adresa-po-lokacii-ili-koordinatam-python))
     + в константе `YANDEX_GEOCODER_API_TOKEN` подставь токен для [API для перевода географических координат в адрес и наоборот](https://yandex.ru/dev/maps/geocoder/). <br>
+    + в константе `OPEN_WEATHER_API_TOKEN` подставь токен для [Open Weather API](https://openweathermap.org/api). <br>
 
 3. Запусти скрипт в корне репозитория `weather_bot.py`
 
