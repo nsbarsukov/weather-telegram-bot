@@ -26,9 +26,7 @@
 - На основе извлеченного названия города бот умеет давать прогноз погоды на нужную дату (в пределах 5 дней вперед).
 - Бот умеет здороваться, прощаться.
 - Бот умеет реагировать на непонятные высказывания.<br>
-![An image](demostration_media/dontUnderstand.PNG) <!-- .element height="30%" width="30%" -->
-![An image](demostration_media/dontUnderstand.PNG =200x400)
-<img src="demostration_media/dontUnderstand.PNG" width="200">
+<img src="demostration_media/dontUnderstand.PNG" width="376">
   
 ## Используемые библиотеки
 Перед запуском проекта необходимо установить следующие пакеты:
