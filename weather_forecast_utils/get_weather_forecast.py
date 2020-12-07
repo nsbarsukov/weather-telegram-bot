@@ -22,8 +22,7 @@ def get_weather_forecast(city_name: str, for_current_date: datetime) -> Forecast
     }
 
     r = requests.get(url=OPEN_WEATHER_URL, params=query_params)
-    resp = r.json()
-    next_5_days_forecasts = resp['list']
+    next_5_days_forecasts = r.json()['list']
 
     def is_current_day_forecast(forecast: ForecastType) -> bool:
         forecast_date_unix = int(forecast['dt'])
@@ -34,6 +33,3 @@ def get_weather_forecast(city_name: str, for_current_date: datetime) -> Forecast
 
     return current_date_forecasts[int(len(current_date_forecasts) / 2)]
 
-
-# print(get_weather_forecast('Москва', datetime(2020, 12, 7)))
-# get_weather_forecast('Москва', datetime(2020, 12, 7))
