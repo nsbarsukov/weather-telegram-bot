@@ -54,9 +54,8 @@ def specify_date(update: Update, context: CallbackContext, locations: List[str])
         [
             'Сегодня\n({})'.format(date_after_today(0)),
             'Завтра\n({})'.format(date_after_today(1)),
-            'Послезавтра\n({})'.format(date_after_today(2))
          ],
-        [date_after_today(3), date_after_today(4), date_after_today(5)]
+        [date_after_today(2), date_after_today(3), date_after_today(4)]
     ]
 
     context.bot.send_message(
