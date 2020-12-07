@@ -28,3 +28,4 @@ class ForecastType(TypedDict):
     wind: WindType
     weather: List[WeatherComments]
     main: MainForecastInfo
+    pop: int
