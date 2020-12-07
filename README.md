@@ -25,7 +25,7 @@
 ![](.demostration_media/botDateDemo.gif)
 - На основе извлеченного названия города бот умеет давать прогноз погоды на нужную дату (в пределах 5 дней вперед).
 - Бот умеет реагировать на непонятные высказывания.<br>
-<img src=".demostration_media/dontUnderstand.PNG" width="376">
+  <img src=".demostration_media/dontUnderstand.PNG" width="376">
 - Бот умеет здороваться, прощаться.
   
 ## Используемые библиотеки
