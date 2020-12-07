@@ -7,6 +7,10 @@ BOT_MESSAGES = {
         "Привет!\nЯ чат-бот погоды:sunny::snowflake::cloud::umbrella:\nПросто напиши мне, в каком городе тебя интересует погода и на какой день.",
         use_aliases=True
     ),
+    'reset_command': emojize(
+        'Начинаем все сначала :arrows_counterclockwise:\nЯ забываю все введенное ранее :see_no_evil::hear_no_evil::speak_no_evil:',
+        use_aliases=True
+    ),
     'say_bye': emojize(
         'До скорых встреч :wave:',
         use_aliases=True

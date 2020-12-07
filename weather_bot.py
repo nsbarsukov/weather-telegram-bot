@@ -27,6 +27,14 @@ def start_command(update: Update, context: CallbackContext):
     )
 
 
+def reset_command(update: Update, context: CallbackContext, bot_ref: Bot):
+    context.bot.send_message(
+        chat_id=update.effective_chat.id,
+        text=BOT_MESSAGES['reset_command']
+    )
+    bot_ref.reset_storage()
+
+
 def say_bye(update: Update, context: CallbackContext):
     context.bot.send_message(
         chat_id=update.effective_chat.id,
@@ -63,7 +71,6 @@ def show_weather_forecast(update: Update, context: CallbackContext, locations: L
     parsed_date = datetime(day.year or date.today().year, day.month or date.today().month, day.day or date.today().day)
 
     forecast = get_weather_forecast(locations[0], parsed_date)
-    print(forecast)
 
     context.bot.send_message(
         chat_id=update.effective_chat.id,
@@ -102,6 +109,7 @@ def message_commander(update: Update, context: CallbackContext, bot_ref: Bot):
 
 bot = Bot(BOT_TOKEN)
 bot.add_command('start', start_command)
+bot.add_command('reset', lambda update, context: reset_command(update, context, bot))
 bot.add_msg_handler(lambda update, context: message_commander(update, context, bot))
 bot.start_polling()
 print(emojize("==============> Бот запущен :rocket: <==============", use_aliases=True))
