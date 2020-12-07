@@ -10,7 +10,7 @@ from telegram.ext import CallbackContext
 # local packages
 from bot import Bot
 from natasha_utils import NatashaExtractor
-from constants import BOT_TOKEN, BOT_MESSAGES, DATE_FORMAT, find_bye_messages_regexp
+from constants import BOT_TOKEN, BOT_MESSAGES, DATE_FORMAT, find_bye_messages_regexp, check_all_tokens_set
 from weather_forecast_utils import get_weather_forecast, get_pretty_html_forecast_message
 
 
@@ -106,9 +106,19 @@ def message_commander(update: Update, context: CallbackContext, bot_ref: Bot):
         bot_ref.reset_storage()
 
 
-bot = Bot(BOT_TOKEN)
-bot.add_command('start', start_command)
-bot.add_command('reset', lambda update, context: reset_command(update, context, bot))
-bot.add_msg_handler(lambda update, context: message_commander(update, context, bot))
-bot.start_polling()
-print(emojize("==============> Бот запущен :rocket: <==============", use_aliases=True))
+if check_all_tokens_set():
+    bot = Bot(BOT_TOKEN)
+    bot.add_command('start', start_command)
+    bot.add_command('reset', lambda update, context: reset_command(update, context, bot))
+    bot.add_msg_handler(lambda update, context: message_commander(update, context, bot))
+    bot.start_polling()
+    print(emojize("==============> Бот запущен :rocket: <==============", use_aliases=True))
+else:
+    print(emojize(
+        ":x: Не установлены все переменные глобального окружения, необходимые для работы бота! :x:",
+        use_aliases=True)
+    )
+    print(emojize(
+        'Смотри пункт "Запуск бота" в README из корня репозитория https://github.com/nsbarsukov/weather-telegram-bot#%D0%B7%D0%B0%D0%BF%D1%83%D1%81%D0%BA-%D0%B1%D0%BE%D1%82%D0%B0',
+        use_aliases=True)
+    )
