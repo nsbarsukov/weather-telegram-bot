@@ -1,17 +1,17 @@
 from datetime import date, timedelta, datetime
 from typing import List
 from emoji import emojize
+from natasha.obj import Date
 
 # telegram bot packages
-from natasha.obj import Date
-from telegram import Update, ReplyKeyboardMarkup
+from telegram import Update, ReplyKeyboardMarkup, ParseMode
 from telegram.ext import CallbackContext
 
 # local packages
 from bot import Bot
 from natasha_utils import NatashaExtractor
 from constants import BOT_TOKEN, BOT_MESSAGES, DATE_FORMAT, find_bye_messages_regexp
-from weather_forecast_utils import get_weather_forecast
+from weather_forecast_utils import get_weather_forecast, get_pretty_html_forecast_message
 
 
 def date_after_today(n, data_format=DATE_FORMAT):
@@ -60,15 +60,16 @@ def specify_date(update: Update, context: CallbackContext, locations: List[str])
 
 def show_weather_forecast(update: Update, context: CallbackContext, locations: List[str], dates: List[Date]):
     day = dates[0]
-    parsed_date = datetime(day.year or date.today().year, day.month, day.day)
+    parsed_date = datetime(day.year or date.today().year, day.month or date.today().month, day.day or date.today().day)
 
     forecast = get_weather_forecast(locations[0], parsed_date)
     print(forecast)
 
-    # TODO Подтянуть api какого-нибудь сервиса с прознозом погоды
     context.bot.send_message(
         chat_id=update.effective_chat.id,
-        text='Показываю прогноз погоды для города "{}" на {}?'.format(locations[0], parsed_date.strftime(DATE_FORMAT))
+        text=get_pretty_html_forecast_message(locations[0], parsed_date, forecast),
+        disable_web_page_preview=True,
+        parse_mode=ParseMode.HTML
     )
 
 

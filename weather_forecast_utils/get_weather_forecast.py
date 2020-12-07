@@ -10,7 +10,6 @@ OPEN_WEATHER_URL = 'https://api.openweathermap.org/data/2.5/forecast'
 
 
 def get_weather_forecast(city_name: str, for_current_date: datetime) -> ForecastType:
-    print('[get_weather_forecast]')
     coords = get_city_coords(city_name)
 
     query_params = {
