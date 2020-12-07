@@ -4,7 +4,7 @@ DATE_FORMAT = '%d.%m.%Y'
 
 BOT_MESSAGES = {
     'start_command': emojize(
-        "Привет!\nЯ чат-бот погоды:sunny::snowflake::cloud::umbrella:\nПросто напиши мне, в каком городе тебя интересует погода и на какой день.",
+        "Привет!\nЯ чат-бот погоды:sunny::snowflake::cloud::umbrella:\nПросто напиши мне, в каком городе тебя интересует погода и на какой день.\n\nP.S. прогноз погоды доступен для городов России не более 5 дней вперед от текущей даты.",
         use_aliases=True
     ),
     'reset_command': emojize(
