@@ -9,6 +9,8 @@
 [Yandex API для перевода географических координат в адрес и наоборот](https://yandex.ru/dev/maps/geocoder/). <br>
 Для получения прогноза погоды по полученным координатам используется [Open Weather API](https://openweathermap.org/forecast5).
 
+![](.demostration_gifs/botDemo.gif)
+
 ## Навигация
 - [Что умеет бот](#что-умеет-бот)
 - [Используемые библиотеки](#используемые-библиотеки)
