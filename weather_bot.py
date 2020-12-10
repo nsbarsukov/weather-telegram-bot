@@ -85,6 +85,7 @@ def message_commander(update: Update, context: CallbackContext, bot_ref: Bot):
     """
     bot_storage_state = bot_ref.get_storage_state()
     remembered_locations = bot_storage_state['locations'] if 'locations' in bot_storage_state else None
+    already_specify_date = bot_storage_state['already_specify_date'] if 'already_specify_date' in bot_storage_state else None
 
     user_text = update.message.text
     user_text_info = NatashaExtractor(update.message.text)
@@ -94,9 +95,10 @@ def message_commander(update: Update, context: CallbackContext, bot_ref: Bot):
     if len(locations) > 0 and len(dates) > 0:
         show_weather_forecast(update, context, locations, dates)
         bot_ref.reset_storage()
-    elif len(locations) > 0 and len(dates) == 0:
+    elif len(locations) > 0 and len(dates) == 0 and not already_specify_date:
         bot_ref.save_to_storage('locations', locations)
         specify_date(update, context, locations)
+        bot_ref.save_to_storage('already_specify_date', True)
     elif find_bye_messages_regexp.search(user_text):
         say_bye(update, context)
         bot_ref.reset_storage()
