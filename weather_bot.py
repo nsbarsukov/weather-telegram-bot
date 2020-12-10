@@ -1,7 +1,6 @@
 from datetime import date, timedelta, datetime
 from typing import List
 from emoji import emojize
-from natasha.obj import Date
 
 # telegram bot packages
 from telegram import Update, ReplyKeyboardMarkup, ParseMode
@@ -65,7 +64,7 @@ def specify_date(update: Update, context: CallbackContext, locations: List[str])
     )
 
 
-def show_weather_forecast(update: Update, context: CallbackContext, locations: List[str], dates: List[Date]):
+def show_weather_forecast(update: Update, context: CallbackContext, locations: List[str], dates: List[date]):
     day = dates[0]
     parsed_date = datetime(day.year or date.today().year, day.month or date.today().month, day.day or date.today().day)
 

@@ -1,4 +1,5 @@
 from typing import List
+from datetime import date
 
 from natasha import (
     Doc,
@@ -11,7 +12,7 @@ from natasha import (
     DatesExtractor,
 )
 from natasha.extractors import Match
-from natasha.obj import Date
+from natasha_utils.helpers import find_dates_as_word, parse_natasha_date_to_datetime
 
 segmenter = Segmenter()
 morph_vocab = MorphVocab()
@@ -39,7 +40,8 @@ class NatashaExtractor:
 
         return list(map(lambda span: span.normal, locations))
 
-    def find_date(self) -> List[Date]:
+    def find_date(self) -> List[date]:
         matched_obj: List[Match] = list(dates_extractor(self.doc.text))
+        natasha_found_dates = list(map(lambda x: parse_natasha_date_to_datetime(x.fact), matched_obj))
 
-        return list(map(lambda x: x.fact, matched_obj))
+        return find_dates_as_word(self.doc.text) + natasha_found_dates
